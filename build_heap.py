@@ -83,7 +83,7 @@ def main():
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
     print(swap_amount)
-    if swap_amount != 0 or swap_amount < 1000:
+    if swap_amount != 0 and swap_amount < 1000:
         # output all swaps
         for i in swaps:
             print(i[0], i[1])
