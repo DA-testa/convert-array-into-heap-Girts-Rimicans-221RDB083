@@ -60,7 +60,7 @@ def main():
             file_name = input().strip()
             if (file_name.lower() == "a"):
                 pass
-            n, input_data = parse_input_file("test/" + file_name)
+            n, input_data = parse_input_file("tests/" + file_name)
     except:
         pass
 
