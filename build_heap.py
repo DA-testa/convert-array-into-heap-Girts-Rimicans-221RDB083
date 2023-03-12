@@ -15,35 +15,41 @@ def parse_input_file(file_name):
     # print(data)
     return n, data
 
-def create_heap(swaps, n, i):
-
+def create_heap(data, n, i, swaps, swap_amount):
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
 
-    if left < n and swaps[left] > swaps[largest]:
+    if left < n and data[i] < data[left]:
         largest = left
 
-    if right < n and swaps[right] > swaps[largest]:
+    if right < n and data[largest] < data[right]:
         largest = right
 
     if largest != i:
-        swaps[i], swaps[largest] = swaps[largest], swaps[i]
+        swap_amount = swap_amount + 1
+        swaps.append([data[i], data[largest]])
 
-        create_heap(swaps, n, largest)
+        data[i], data[largest] = data[largest], data[i]
+        create_heap(data, n, largest, swaps, swap_amount)
 
-def build_heap(data):
-    swaps = data
-    n = len(swaps)
-    start_index = n // 2 - 1
-    for i in range(start_index, -1, -1):
-        create_heap(swaps, n, i)
+    return swaps, swap_amount
 
-    return swaps
+def build_heap(data, swaps, swap_amount):
+    n = len(data)
+
+    for i in range(n//2, -1, -1):
+        swaps, swap_amount = create_heap(data, n, i, swaps, swap_amount)
+  
+    for i in range(n-1, 0, -1):
+        data[i], data[0] = data[0], data[i]
+        swaps, swap_amount = create_heap(data, i, 0, swaps, swap_amount)
+
+    return swaps, swap_amount
 
 def main():
-    n = 0
-    data = []
+    n, swap_amount = 0, 0
+    data, swaps = [], []
 
     try:
         key = input().strip()
@@ -63,16 +69,16 @@ def main():
 
     # calls function to assess the data 
     # and give back all swaps
-    swaps = build_heap(data)
+    swaps, swap_amount = build_heap(data, swaps, swap_amount)
+    swaps.pop()
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
-
-
-    # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    print(swap_amount)
+    if swap_amount != 0 or swap_amount < 1000:
+        # output all swaps
+        for i in swaps:
+            print(i[0], i[1])
 
 
 if __name__ == "__main__":
