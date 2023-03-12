@@ -49,28 +49,36 @@ def build_heap(data, swaps, swap_amount):
 
 def main():
     n, swap_amount = 0, 0
-    data, swaps = [], []
+    input_data, data, swaps = [], [], []
 
     try:
         key = input().strip()
         # print(key)
         if (key.upper() == "I"):
-            n, data = parse_input_user()
+            n, input_data = parse_input_user()
         elif (key.upper() == "F"):
             file_name = input().strip()
             if (file_name.lower() == "a"):
                 pass
-            n, data = parse_input_file("test/" + file_name)
+            n, input_data = parse_input_file("test/" + file_name)
     except:
         pass
 
     # checks if lenght of data is the same as the said lenght
+    data = input_data
     assert len(data) == n
-
     # calls function to assess the data 
     # and give back all swaps
     swaps, swap_amount = build_heap(data, swaps, swap_amount)
-    swaps.pop()
+    if input_data == data:
+        print(0)
+        return
+
+    if swaps:
+        swaps.pop()
+    else:
+        print(swap_amount)
+        return
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
