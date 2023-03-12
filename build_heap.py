@@ -65,7 +65,7 @@ def main():
         pass
 
     # checks if lenght of data is the same as the said lenght
-    data = input_data
+    data = input_data.copy()
     assert len(data) == n
     # calls function to assess the data 
     # and give back all swaps
