@@ -20,10 +20,10 @@ def create_heap(data, n, i, swaps, swap_amount):
     left = 2 * i + 1
     right = 2 * i + 2
 
-    if left < n and data[i] < data[left]:
+    if left < n and data[left] < data[largest]:
         largest = left
 
-    if right < n and data[largest] < data[right]:
+    if right < n and data[right] < data[largest]:
         largest = right
 
     if largest != i:
@@ -41,9 +41,9 @@ def build_heap(data, swaps, swap_amount):
     for i in range(n//2, -1, -1):
         swaps, swap_amount = create_heap(data, n, i, swaps, swap_amount)
   
-    for i in range(n-1, 0, -1):
-        data[i], data[0] = data[0], data[i]
-        swaps, swap_amount = create_heap(data, i, 0, swaps, swap_amount)
+    # for i in range(n-1, 0, -1):
+    #     data[i], data[0] = data[0], data[i]
+    #     swaps, swap_amount = create_heap(data, i, 0, swaps, swap_amount)
 
     return swaps, swap_amount
 
