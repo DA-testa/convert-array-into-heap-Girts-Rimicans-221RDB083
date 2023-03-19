@@ -45,8 +45,8 @@ def main():
         # print(key)
         if (key.upper() == "I"):
             n, input_data = parse_input_user()
-        eleftif (key.upper() == "F"):
-            filefte_name = input().strip()
+        elif (key.upper() == "F"):
+            file_name = input().strip()
             if (file_name.lower() == "a"):
                 pass
             n, input_data = parse_input_file("tests/" + file_name)
@@ -59,7 +59,6 @@ def main():
     # and give back all swaps
     swaps = build_heap(input_data)
 
-    # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
     print(len(swaps))
     for i, j in swaps:
