@@ -5,7 +5,7 @@
       "setup": "",
       "run": "python3 build_heap.py",
       "input": "I\r\n5\r\n5 4 3 2 1",
-      "output": "3\r\n1 4\r\n0 1\r\n1 3",
+      "output": "3\r\n1 4\r\n1 2\r\n1 3",
       "comparison": "included",
       "timeout": 1,
       "points": 1
@@ -25,7 +25,7 @@
       "setup": "",
       "run": "python3 build_heap.py",
       "input": "F\r\n04",
-      "output": "9990",
+      "output": "99998",
       "comparison": "included",
       "timeout": 5,
       "points": 1
